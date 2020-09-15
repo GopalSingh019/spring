@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	 <!-- <bean id="drds"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:orcl" />
+		<property name="username" value="hr" />
+		<property name="password" value="gopal6311" />
+	</bean>
+
+	
+    <bean id="dao" class="com.nt.dao.PlayerdaoImpl">
+		<constructor-arg ref="drds" />
+	</bean>
+	
+	
+	<bean id="service" class="com.nt.service.PlayerserviceImpl">
+		<constructor-arg ref="dao" />
+	</bean>
+
+	<bean name="cntl" class="com.nt.controller.MainController">
+		<constructor-arg ref="service" />
+	</bean>  -->
+	
+	<!-- bean configuration using namespaces -->
+	<bean id="drds" class="org.springframework.jdbc.datasource.DriverManagerDataSource" p:driverClassName="${jdbc.driver}" p:url="${jdbc.url}" p:username="hr" p:password="gopal6311"/> 
+    <bean id="dao1" class="com.nt.dao.PlayerdaoImpl" c:ds-ref="drds"/>
+    <bean id="service" class="com.nt.service.PlayerserviceImpl" c:dao-ref="dao1"/>
+    <bean id="cntl" class="com.nt.controller.MainController" c:ps-ref="service"/>
+    <context:property-placeholder location="com/nt/commons/jdbc.properties"/>
+</beans>
