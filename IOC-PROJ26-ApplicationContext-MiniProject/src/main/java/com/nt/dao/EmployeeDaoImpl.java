@@ -13,12 +13,11 @@ import com.nt.bo.EmployeeBo;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 private DataSource ds;
-private String getEmployee="SELECT EMPNO,ENAME,JOB,SAL,DEPTNO FROM EMP WHERE JOB IN(?,?,?) ORDER BY JOB";
+private String getEmployee="SELECT ENO,ENAME,JOB,SALARY,DEPTNO FROM EMPLOYEE WHERE JOB IN(?,?,?) ORDER BY JOB";
 
 public EmployeeDaoImpl(DataSource ds) {
 	// TODO Auto-generated constructor stub
 	this.ds=ds;
-	System.out.println(ds.toString());
 }
 	@Override
 	public List<EmployeeBo> getEmployeeByDesg(String desg1, String desg2, String desg3) throws Exception {
@@ -41,9 +40,10 @@ public EmployeeDaoImpl(DataSource ds) {
 				bo.setId(rs.getInt(1));
 				bo.setName(rs.getString(2));
 				bo.setJob(rs.getString(3));
-				bo.setDept(rs.getInt(4));
-				bo.setSalary(rs.getInt(5));
+				bo.setDept(rs.getInt(5));
+				bo.setSalary(rs.getInt(4));
 				listbo.add(bo);
+				System.out.println(bo.getSalary());
 			}
 		}catch(SQLException se) {
 			se.printStackTrace();

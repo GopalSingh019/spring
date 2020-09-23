@@ -18,7 +18,7 @@
    </bean>
    
    
-   <bean id="service" name="com.nt.service.EmployeeMgmtServiceImpl">
+   <bean id="service" class="com.nt.service.EmployeeMgmtServiceImpl">
    <constructor-arg ref="dao"/>
    </bean>
    

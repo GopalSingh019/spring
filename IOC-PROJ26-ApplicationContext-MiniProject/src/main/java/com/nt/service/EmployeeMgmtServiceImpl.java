@@ -27,11 +27,12 @@ public class EmployeeMgmtServiceImpl implements EmployeeMgmtService {
 		listDto=new ArrayList();
 		listbo=dao.getEmployeeByDesg(desg1, desg2, desg3);
 		for(EmployeeBo bo:listbo) {
-			BeanUtils.copyProperties(bo, dto);
-			if(dto.getJob().equalsIgnoreCase("SOFTWARE"))
+			dto=new EmployeeDto();
+			if(bo.getJob().equalsIgnoreCase("SOFTWARE"))
 				dto.setType("premium");
 			else
 				dto.setType("non-premium");
+			BeanUtils.copyProperties(bo,dto);
 			listDto.add(dto);
 		}
 		}catch(Exception e) {

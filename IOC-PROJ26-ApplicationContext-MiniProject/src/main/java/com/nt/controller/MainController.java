@@ -26,11 +26,12 @@ public class MainController {
 			{
 			     vo=new EmployeeVo();
 			     vo.setId(String.valueOf(dto.getId()));
-			     vo.setName(vo.getName());
+			     vo.setName(dto.getName());
 			     vo.setJob(dto.getJob());
 			     vo.setDept(String.valueOf(dto.getDept()));
 			     vo.setSalary(String.valueOf(dto.getSalary()));
 			     vo.setType(dto.getType());
+			     listvo.add(vo);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
